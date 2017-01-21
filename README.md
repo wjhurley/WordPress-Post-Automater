@@ -12,12 +12,10 @@ Prerequisite: [Node.js](https://nodejs.org/en/) must be installed.
 5. Once installation is complete, go to [https://sites.google.com/a/chromium.org/chromedriver/downloads](https://sites.google.com/a/chromium.org/chromedriver/downloads) to download the latest version of ChromeDriver.
 6. Once downloaded, open the zip file and extract to the wordpress-post-automater folder.
 7. Running the application requires 4 arguments:
-
-| `wordpressURL` | The admin login page for your WordPress site (../wp-login.php)        |
-| `userName`     | The admin user name for your WordPress site                           |
-| `userPassword` | The admin password for your WordPress site                            |
-| `searchQuery`  | The string you want to search for and replace in your WordPress posts |
-
+1. `wordpressURL` - The admin login page for your WordPress site (../wp-login.php)
+2. `userName` - The admin user name for your WordPress site
+3. `userPassword` - The admin password for your WordPress site
+4. `searchQuery` - The string you want to search for and replace in your WordPress posts
 8. The terminal command will look like this:
 ```Shell
 node index.js wordpressURL userName userPassword searchQuery
