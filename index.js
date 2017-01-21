@@ -12,6 +12,7 @@ var input = require('./node_modules/selenium-webdriver/lib/input'),
 var wordpressURL = process.argv[2];
 var userName = process.argv[3];
 var userPassword = process.argv[4];
+var searchQuery = process.argv[5];
 var defaultTimeOut = 20000;
 var fixedText = '';
 var numberChallenges = 0;
@@ -28,7 +29,7 @@ driver.findElement(By.id('wp-submit')).click();
 //search for the desired posts
 driver.findElement(By.xpath('//li[@id="menu-posts"]/a/div[3]')).click();
 driver.findElement(By.linkText('All Posts')).click();
-driver.findElement(By.id('post-search-input')).sendKeys('©');
+driver.findElement(By.id('post-search-input')).sendKeys(searchQuery);
 driver.findElement(By.id('search-submit')).click();
 //scrape the number of search results found
 driver.findElement(By.className('displaying-num')).getText().then( function(text) {
@@ -55,7 +56,7 @@ driver.findElement(By.className('displaying-num')).getText().then( function(text
     driver.findElement(By.id('publish')).click();
     //intentionally re-run search because it's needed in the for loop
     driver.findElement(By.linkText('All Posts')).click();
-    driver.findElement(By.id('post-search-input')).sendKeys('©');
+    driver.findElement(By.id('post-search-input')).sendKeys(searchQuery);
     driver.findElement(By.id('search-submit')).click();
   }
 });
