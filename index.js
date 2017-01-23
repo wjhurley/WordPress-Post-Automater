@@ -13,7 +13,8 @@ var wordpressURL = process.argv[2];
 var userName = process.argv[3];
 var userPassword = process.argv[4];
 var searchQuery = process.argv[5];
-var defaultTimeOut = 20000;
+var replaceText = process.argv[6];
+var defaultTimeOut = 30000;
 var fixedText = '';
 var numberChallenges = 0;
 
@@ -39,10 +40,13 @@ driver.findElement(By.className('displaying-num')).getText().then( function(text
   for(let i = 0; i < numberChallenges; i++) {
     driver.findElement(By.className('row-title')).click();
     driver.findElement(By.className('wp-editor-area')).getText().then( function(text) {
-      let copyRegExp = /[©]/g;
-      let fixedTextArray = [];
-      if(text) {
-        fixedText = text.replace(copyRegExp, '&copy;');
+      if(text && typeof searchQuery === 'string') {
+        var count = 0;
+        while(text.indexOf(searchQuery, count) !== -1) {
+          fixedText = text.replace(searchQuery, replaceText);
+          count += text.indexOf(searchQuery, count);
+          console.log(count);
+        }
         driver.findElement(By.id('content')).clear();
         for(let j = 0; j < fixedText.length; j += 64) {
           driver.findElement(By.id('content')).sendKeys(fixedText.substr(j, Math.min(64, fixedText.length - j)));
