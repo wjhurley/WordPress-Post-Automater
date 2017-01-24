@@ -18,12 +18,11 @@ var defaultTimeOut = 30000;
 var fixedText = '';
 var numberChallenges = 0;
 
-//set timeout for waiting on DOM element
+//set timeout for waiting on DOM elements
 driver.manage().timeouts().implicitlyWait(defaultTimeOut);
 driver.manage().timeouts().pageLoadTimeout(defaultTimeOut);
 //navigate to Wordpress login page
 driver.get(wordpressURL);
-//driver.wait(until.titleContains('The Library'), defaultTimeOut);
 driver.findElement(By.id('user_login')).sendKeys(userName);
 driver.findElement(By.id('user_pass')).sendKeys(userPassword);
 driver.findElement(By.id('wp-submit')).click();
