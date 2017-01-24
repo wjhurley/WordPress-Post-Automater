@@ -39,13 +39,14 @@ driver.findElement(By.className('displaying-num')).getText().then( function(text
   //loop to run on all posts that meet search criteria
   for(let i = 0; i < numberChallenges; i++) {
     driver.findElement(By.className('row-title')).click();
-    driver.findElement(By.className('wp-editor-area')).getText().then( function(text) {
+    driver.findElement(By.id('content')).getText().then( function(text) {
       if(text && typeof searchQuery === 'string') {
         var count = 0;
         while(text.indexOf(searchQuery, count) !== -1) {
           fixedText = text.replace(searchQuery, replaceText);
-          count += text.indexOf(searchQuery, count);
-          console.log(count);
+          count = text.indexOf(searchQuery, count) + 1;
+          //set text to edited version for multiple occurrences of search query in post
+          text = fixedText;
         }
         driver.findElement(By.id('content')).clear();
         for(let j = 0; j < fixedText.length; j += 64) {
