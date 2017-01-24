@@ -13,7 +13,8 @@ var wordpressURL = process.argv[2];
 var userName = process.argv[3];
 var userPassword = process.argv[4];
 var searchQuery = process.argv[5];
-var defaultTimeOut = 20000;
+var replaceText = process.argv[6];
+var defaultTimeOut = 30000;
 var fixedText = '';
 var numberChallenges = 0;
 
@@ -37,13 +38,14 @@ driver.findElement(By.className('displaying-num')).getText().then( function(text
   numberChallenges = Number(text.substring(0, text.indexOf(" ")));
   //loop to run on all posts that meet search criteria
   for(let i = 0; i < numberChallenges; i++) {
+    //click on first result found
     driver.findElement(By.className('row-title')).click();
-    driver.findElement(By.className('wp-editor-area')).getText().then( function(text) {
-      let copyRegExp = /[©]/g;
-      let fixedTextArray = [];
-      if(text) {
-        fixedText = text.replace(copyRegExp, '&copy;');
+    //grab the text editor content
+    driver.findElement(By.id('content')).getText().then( function(text) {
+      if(text && typeof searchQuery === 'string') {
+        fixedText = text.replace(searchQuery, replaceText);
         driver.findElement(By.id('content')).clear();
+        //loop inserts fixedText into text editor in chunks to avoid error message
         for(let j = 0; j < fixedText.length; j += 64) {
           driver.findElement(By.id('content')).sendKeys(fixedText.substr(j, Math.min(64, fixedText.length - j)));
         };
@@ -52,9 +54,10 @@ driver.findElement(By.className('displaying-num')).getText().then( function(text
       }
     });
     driver.wait(until.elementIsEnabled(driver.findElement(By.id('publish'))), defaultTimeOut);
+    //scroll up the page to make the publish button visible
     driver.executeScript('window.scrollTo(0, 0);');
     driver.findElement(By.id('publish')).click();
-    //intentionally re-run search because it's needed in the for loop
+    //re-run search to find next post to edit
     driver.findElement(By.linkText('All Posts')).click();
     driver.findElement(By.id('post-search-input')).sendKeys(searchQuery);
     driver.findElement(By.id('search-submit')).click();
