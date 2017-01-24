@@ -18,7 +18,7 @@ Prerequisite: [Node.js](https://nodejs.org/en/) must be installed.
 | `userName`     | The admin user name for your WordPress site                           |
 | `userPassword` | The admin password for your WordPress site                            |
 | `searchQuery`  | The string you want to search for in your WordPress posts             |
-| 'replaceText'  | The string you want to replace `searchQuery` in your WordPress posts  |
+| `replaceText`  | The string you want to replace `searchQuery` in your WordPress posts  |
 ####8. The terminal command will look like this:
 ```Shell
 node index.js wordpressURL userName userPassword searchQuery replaceText
