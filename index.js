@@ -43,7 +43,13 @@ driver.findElement(By.className('displaying-num')).getText().then( function(text
     //grab the text editor content
     driver.findElement(By.id('content')).getText().then( function(text) {
       if(text && typeof searchQuery === 'string') {
-        fixedText = text.replace(searchQuery, replaceText);
+        var count = 0;
+        while(text.indexOf(searchQuery, count) !== -1) {
+          fixedText = text.replace(searchQuery, replaceText);
+          count = text.indexOf(searchQuery, count) + 1;
+          //set text to edited version for multiple occurrences of search query in post
+          text = fixedText;
+        }
         driver.findElement(By.id('content')).clear();
         //loop inserts fixedText into text editor in chunks to avoid error message
         for(let j = 0; j < fixedText.length; j += 64) {
