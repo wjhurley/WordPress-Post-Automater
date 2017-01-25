@@ -8,10 +8,8 @@ Prerequisite: [Node.js](https://nodejs.org/en/) must be installed.
 ####1. Create a project folder on your computer.
 ####2. Clone this repository or fork and clone your forked repository to the project folder.
 ####3. Navigate to the new wordpress-post-automater folder and open a Command Line.
-####4. From the terminal run: `npm install` to install dependencies.
-####5. Once installation is complete, go to [https://sites.google.com/a/chromium.org/chromedriver/downloads](https://sites.google.com/a/chromium.org/chromedriver/downloads) to download the latest version of ChromeDriver.
-####6. Once downloaded, open the zip file and extract to the wordpress-post-automater folder.
-####7. Running the application requires 5 arguments:
+####4. From the terminal run: `npm install` to install the selenium-webdriver and chromedriver dependencies.
+####5. Running the application requires 5 arguments:
 | Argument       | Description                                                           |
 |----------------|-----------------------------------------------------------------------|
 | `wordpressURL` | The admin login page for your WordPress site (../wp-login.php)        |
@@ -19,7 +17,7 @@ Prerequisite: [Node.js](https://nodejs.org/en/) must be installed.
 | `userPassword` | The admin password for your WordPress site                            |
 | `searchQuery`  | The string you want to search for in your WordPress posts             |
 | `replaceText`  | The string you want to replace `searchQuery` in your WordPress posts  |
-####8. The terminal command will look like this:
+####6. The terminal command will look like this:
 ```Shell
 node index.js wordpressURL userName userPassword searchQuery replaceText
 ```

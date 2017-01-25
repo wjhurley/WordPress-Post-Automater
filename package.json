@@ -4,6 +4,7 @@
   "description": "Selenium-webdriver application for automating WordPress post edits.",
   "main": "index.js",
   "dependencies": {
+    "chromedriver": "^2.27.2",
     "selenium-webdriver": "^3.0.1"
   },
   "devDependencies": {},
