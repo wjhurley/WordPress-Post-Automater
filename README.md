@@ -1,4 +1,4 @@
-# WordPress Post Automater
+#WordPress Post Automater
 Selenium WebDriver application for automating WordPress post edits.
 ## Getting Started
 **This will only set up Selenium WebDriver for Chrome on Windows. Please see the official [SeleniumHQ website](http://www.seleniumhq.org/) for help with other browsers and operating systems.**
