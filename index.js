@@ -1,14 +1,12 @@
 require('chromedriver');
 var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
+    Key = webdriver.Key,
     until = webdriver.until;
 
 var driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
-
-var input = require('./node_modules/selenium-webdriver/lib/input'),
-    Key = input.Key;
 
 var wordpressURL = process.argv[2];
 var userName = process.argv[3];
