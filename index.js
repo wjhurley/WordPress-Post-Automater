@@ -1,4 +1,5 @@
 require('chromedriver');
+var config = require('./config');
 var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     Key = webdriver.Key,
@@ -8,11 +9,11 @@ var driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
 
-var wordpressURL = process.argv[2];
-var userName = process.argv[3];
-var userPassword = process.argv[4];
-var searchQuery = process.argv[5];
-var replaceText = process.argv[6];
+var wordpressURL = config.wordpress_url;
+var userName = config.wordpress_user;
+var userPassword = config.wordpress_pass;
+var searchQuery = process.argv[2];
+var replaceText = process.argv[3];
 var defaultTimeOut = 30000;
 var fixedText = '';
 var numberChallenges = 0;
