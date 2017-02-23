@@ -43,3 +43,4 @@ node_modules/*
 # Other Files #
 ###############
 test.js
+*.env
